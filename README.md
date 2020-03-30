@@ -7,3 +7,25 @@
 for learners and researchers to access, comment, share, subscribe to pro, pay for pro access, bookmark and like
 # Stacks
 - The API is developed using NodeJs, Express server and Connecting to a mongo Database.
+## Application flow
+- Authentication
+- Articles
+- Comments
+- Subscription
+- Share
+### Authentication
+- Regiter on application:
+    {
+      "username":"new user",
+      "email":"user@email.com",
+      "password":"Mustbe@val1dpswd"
+    }
+- Social authentication: Google, facebook, twitter
+### Articles
+- Authenticated users can create, update and delete and publish content
+- All user (both authenticated and unauthenticated) can view published content
+- Authenticated users can: like, favorite and bookmark.
+### Subscriptions
+- Authenticated users can subscribe to certain mentors so that they get email notifications 
+### Share
+- Authenticate users can share contents through social media
