@@ -7,6 +7,11 @@
 for learners and researchers to access, comment, share, subscribe to pro, pay for pro access, bookmark and like
 # Stacks
 - The API is developed using NodeJs, Express server and Connecting to a mongo Database.
+## Project setup
+- clone the repository
+- run `npm install` on your terminal to install dependencies.
+- run `npm start` to run the server.
+- run `npm test` to run tests.
 ## Application flow
 - Authentication
 - Articles
