@@ -7,6 +7,7 @@ require("dotenv/config");
 //module imports
 // routes imports
 const userRoutes = require("./Routes/users/registration/User");
+const loginRoutes = require("./Routes/users/login/Login");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cors());
 
 // routes
 app.use("/authentication", userRoutes);
+app.use("/user", loginRoutes);
 
 // server
 mongoose

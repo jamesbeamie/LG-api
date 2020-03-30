@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const checkAuthentication = require("../../../middlewares/AuthMiddleware");
 
 const User = require("../../../models/users/UserModel");
 
@@ -62,7 +63,7 @@ router.get("/", async (req, res) => {
 });
 
 // get a specific user
-router.get("/:userId", async (req, res) => {
+router.get("/:userId", checkAuthentication, async (req, res) => {
   try {
     const exists = await User.findById(req.params.userId);
     if (exists) {
@@ -76,7 +77,7 @@ router.get("/:userId", async (req, res) => {
 });
 
 // Edit User
-router.patch("/:userId", async (req, res) => {
+router.patch("/:userId", checkAuthentication, async (req, res) => {
   try {
     const { username, email, password } = req.body;
     const exists = await User.findById(req.params.userId);
@@ -109,7 +110,7 @@ router.patch("/:userId", async (req, res) => {
 });
 
 // delete user
-router.delete("/:userId", async (req, res) => {
+router.delete("/:userId", checkAuthentication, async (req, res) => {
   try {
     const exists = await User.findById(req.params.userId);
     if (exists) {
