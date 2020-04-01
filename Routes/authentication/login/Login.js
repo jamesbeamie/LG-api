@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
-const User = require("../../../models/users/UserModel");
+const User = require("../../../models/authModels/UserModel");
 
 //Login route
 

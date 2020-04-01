@@ -6,8 +6,11 @@ require("dotenv/config");
 
 //module imports
 // routes imports
-const userRoutes = require("./Routes/users/registration/User");
-const loginRoutes = require("./Routes/users/login/Login");
+const userRoutes = require("./Routes/authentication/registration/User");
+const loginRoutes = require("./Routes/authentication/login/Login");
+const socialAuthRoute = require("./Routes/authentication/socialAuth/GoogleAuth");
+// must be imported for passport config to rub
+const passport = require("./middlewares/PassportConfig");
 
 const app = express();
 
@@ -17,7 +20,8 @@ app.use(cors());
 
 // routes
 app.use("/authentication", userRoutes);
-app.use("/user", loginRoutes);
+app.use("/authentication", loginRoutes);
+app.use("/socialauth", socialAuthRoute);
 
 // server
 mongoose
@@ -29,10 +33,8 @@ mongoose
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
-    console.log("connected");
     app.listen(`${process.env.PORT}` || 5000);
   })
   .catch(err => {
-    console.log("Shida");
     throw err;
   });
