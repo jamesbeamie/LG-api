@@ -9,6 +9,7 @@ require("dotenv/config");
 const userRoutes = require("./Routes/authentication/registration/User");
 const loginRoutes = require("./Routes/authentication/login/Login");
 const socialAuthRoute = require("./Routes/authentication/socialAuth/GoogleAuth");
+const articlesRoutes = require("./Routes/Articles/Articles");
 // must be imported for passport config to rub
 const passport = require("./middlewares/PassportConfig");
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use("/authentication", userRoutes);
 app.use("/authentication", loginRoutes);
 app.use("/socialauth", socialAuthRoute);
+app.use("/articles", articlesRoutes);
 
 // server
 mongoose
