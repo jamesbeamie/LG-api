@@ -42,7 +42,7 @@ for learners and researchers to access, comment, share, subscribe to pro, pay fo
 - Get all articles:
    - `Get` to `http://localhost:5000/articles`
 - Get Specific article
-   - `Get` to `http://localhost:5000/articles/<articleID>
+   - `Get` to `http://localhost:5000/articles/<articleID>`
 ### Subscriptions
 - Authenticated users can subscribe to certain mentors so that they get email notifications 
 ### Share
