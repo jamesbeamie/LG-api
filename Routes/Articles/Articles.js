@@ -58,6 +58,45 @@ router.get("/:articleId", async (req, res) => {
   }
 });
 
+//edit article
+router.patch(
+  "/:articleId",
+  imageMiddleware,
+  authMiddleware,
+  async (req, res) => {
+    const found = await Article.findById(req.params.articleId);
+    if (found) {
+      try {
+        const { title, description, body } = req.body;
+        const updatedArticle = await Article.updateOne(
+          {
+            _id: req.params.articleId
+          },
+          {
+            $set: {
+              title,
+              description,
+              body,
+              updatedAt: new Date(),
+              articleImage: req.file.path
+            }
+          }
+        );
+        res
+          .status(201)
+          .json({ article: updatedArticle, message: "Update successful" });
+      } catch (err) {
+        res.json({
+          message: `Error updating article: ${req.params.articleId}`
+        });
+      }
+    } else {
+      res.json({
+        message: `Article with Id: ${req.params.articleId} not found`
+      });
+    }
+  }
+);
 //delete an article
 router.delete("/:articleId", authMiddleware, async (req, res) => {
   try {
