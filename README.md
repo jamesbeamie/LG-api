@@ -25,6 +25,12 @@ for learners and researchers to access, comment, share, subscribe to pro, pay fo
       "email":"user@email.com",
       "password":"Mustbe@val1dpswd"
     }
+    - `Post` to `http://localhost:5000/authentication/signup`
+- Login: {
+      "email":"user@email.com",
+      "password":"Mustbe@val1dpswd"
+    }
+   - `Post` to `http://localhost:5000/authentication/login`
 - Social authentication: Google, facebook, twitter
 ### Articles
 - Authenticated users can create, update and delete and publish content
@@ -32,6 +38,11 @@ for learners and researchers to access, comment, share, subscribe to pro, pay fo
 - Authenticated users can: like, favorite and bookmark.
 - Creating an article:
   - post form-data with: `title, description, body, articleImage` with a `bearer token` in the `headers` 
+   - `Post` to `http://localhost:5000/articles`
+  - Get all articles:
+   - `Get` to `http://localhost:5000/articles`
+  - Get Specific article
+   - `Get` to `http://localhost:5000/articles/<articleID>
 ### Subscriptions
 - Authenticated users can subscribe to certain mentors so that they get email notifications 
 ### Share
