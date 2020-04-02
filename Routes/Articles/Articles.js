@@ -58,4 +58,22 @@ router.get("/:articleId", async (req, res) => {
   }
 });
 
+//delete an article
+router.delete("/:articleId", authMiddleware, async (req, res) => {
+  try {
+    const exists = await Article.findById(req.params.articleId);
+    if (exists) {
+      // model.remove is deprecated use deleteOne instead
+      const deletedArticle = await Article.deleteOne({
+        _id: req.params.articleId
+      });
+      res.json({ article: deletedArticle, message: "deleted" });
+    } else {
+      res.json({ message: `sorry :${req.params.articleId} was not found` });
+    }
+  } catch (err) {
+    res.json({ message: `Error deleting :${req.params.articleId}` });
+  }
+});
+
 module.exports = router;
