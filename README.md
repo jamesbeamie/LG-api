@@ -9,6 +9,7 @@ for learners and researchers to access, comment, share, subscribe to pro, pay fo
 - The API is developed using NodeJs, Express server and Connecting to a mongo Database.
 ## Project setup
 - clone the repository
+- create a `.env` file in your project and add the variables as shown in the `sample .env` 
 - Sample .env variables:`
 LOCAL_DB=mongodb://localhost/yourlocalDB,
 PORT=5000
