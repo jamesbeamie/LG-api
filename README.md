@@ -9,6 +9,10 @@ for learners and researchers to access, comment, share, subscribe to pro, pay fo
 - The API is developed using NodeJs, Express server and Connecting to a mongo Database.
 ## Project setup
 - clone the repository
+- Sample .env variables:`
+LOCAL_DB=mongodb://localhost/yourlocalDB,
+PORT=8080
+JWT_SECRETE_KEY=averysecretekeyforauthentication `
 - run `npm install` on your terminal to install dependencies.
 - run `npm start` to run the server.
 - run `npm test` to run tests.
