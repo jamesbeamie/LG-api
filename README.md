@@ -30,6 +30,8 @@ for learners and researchers to access, comment, share, subscribe to pro, pay fo
 - Authenticated users can create, update and delete and publish content
 - All user (both authenticated and unauthenticated) can view published content
 - Authenticated users can: like, favorite and bookmark.
+- Creating an article:
+  - post form-dataeith: `title, description, body, articleImage` with a `bearer token` in the `headers` 
 ### Subscriptions
 - Authenticated users can subscribe to certain mentors so that they get email notifications 
 ### Share
