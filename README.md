@@ -49,6 +49,9 @@ JWT_SECRETE_KEY=averysecretekeyforauthentication `
    - `Get` to `http://localhost:5000/articles/<articleID>`
 - Delete an article
    - `Delete` to `http://localhost:5000/articles/<articleID>`
+- Updating an article:
+  - Send form-data with: `title, description, body, articleImage` with a `bearer token` in the `headers` 
+   - `Patch` to `http://localhost:5000/articles/<articleID>`
 ### Subscriptions
 - Authenticated users can subscribe to certain mentors so that they get email notifications 
 ### Share
