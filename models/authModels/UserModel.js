@@ -1,8 +1,8 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // Posts Schema
 
-let userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   username: {
     type: String,
     required: true
@@ -14,7 +14,8 @@ let userSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  likedArticles: [{ type: mongoose.Schema.Types.ObjectId, ref: "Likes" }]
 });
 
 module.exports = mongoose.model("User", userSchema);

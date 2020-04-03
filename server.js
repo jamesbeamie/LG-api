@@ -10,6 +10,8 @@ const userRoutes = require("./Routes/authentication/registration/User");
 const loginRoutes = require("./Routes/authentication/login/Login");
 const socialAuthRoute = require("./Routes/authentication/socialAuth/GoogleAuth");
 const articlesRoutes = require("./Routes/Articles/Articles");
+const likesRoute = require("./Routes/Likes/Likes");
+const dislikesRoute = require("./Routes/Dislikes/Dislikes");
 // must be imported for passport config to rub
 const passport = require("./middlewares/PassportConfig");
 
@@ -24,6 +26,8 @@ app.use("/authentication", userRoutes);
 app.use("/authentication", loginRoutes);
 app.use("/socialauth", socialAuthRoute);
 app.use("/articles", articlesRoutes);
+app.use("/likes", likesRoute);
+app.use("/dislikes", dislikesRoute);
 
 // server
 mongoose

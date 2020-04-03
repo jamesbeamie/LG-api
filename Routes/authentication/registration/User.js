@@ -37,6 +37,7 @@ router.post("/signup", async (req, res) => {
             });
 
             newUser.save();
+            newUser.populate("likedArticles");
             res.status(201).json({ savedUser: newUser, message: "Created" });
           }
         });
