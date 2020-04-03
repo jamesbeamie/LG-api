@@ -22,6 +22,7 @@ router.post("/", imageMiddleware, authMiddleware, async (req, res) => {
 
   try {
     const publishedArticle = await newArticle.save();
+    publishedArticle.populate("likes", "dislikes");
     res.status(201).json({ publishedArticle, message: "publish successful" });
   } catch (err) {
     res.json({ message: "Error publishing article" });
@@ -32,7 +33,7 @@ router.post("/", imageMiddleware, authMiddleware, async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const articles = await Article.find();
+    const articles = await Article.find().populate("likes dislikes");
     res.status(200).json({ articles });
   } catch (err) {
     res.json({ message: "problem finding articles", err });
@@ -41,7 +42,9 @@ router.get("/", async (req, res) => {
 
 // specific article
 router.get("/:articleId", async (req, res) => {
-  const exists = await Article.findById(req.params.articleId);
+  const exists = await Article.findById(req.params.articleId).populate(
+    "likes dislikes"
+  );
   if (exists) {
     try {
       res

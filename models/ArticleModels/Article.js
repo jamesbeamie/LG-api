@@ -1,8 +1,8 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-let articleSchema = new Schema({
+const articleSchema = new Schema({
   title: {
     type: String,
     require: true
@@ -25,7 +25,9 @@ let articleSchema = new Schema({
   },
   updatedAt: {
     type: Date
-  }
+  },
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Likes" }],
+  dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "DisLikes" }]
 });
 
 module.exports = mongoose.model("Article", articleSchema);
