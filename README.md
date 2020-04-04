@@ -53,6 +53,17 @@ JWT_SECRETE_KEY=averysecretekeyforauthentication `
 - Updating an article:
   - Send form-data with: `title, description, body, articleImage` with a `bearer token` in the `headers` 
    - `Patch` to `http://localhost:5000/articles/<articleID>`
+### Comments on articles
+- Authenticated users can create, update and delete a comment on an article
+- All user (both authenticated and unauthenticated) can view comments on articles
+- Creating a comment:
+  - send: `{"comment":"I am commenting here"}` with a`bearer token` in the `headers` and the `id of the article to comment on` 
+   - `Post` to `http://localhost:5000/comments/<articleId>`
+- Delete an a comment
+   - `Delete` to `http://localhost:5000/comments/<commentId>`
+- Updating an article:
+  - send: `{"comment":"I am commenting here"}` with a`bearer token` in the `headers` and the `id of the article to comment on` 
+   - `Patch` to `http://localhost:5000/comments/<commentId>`
 ### Subscriptions
 - Authenticated users can subscribe to certain mentors so that they get email notifications 
 ### Share
