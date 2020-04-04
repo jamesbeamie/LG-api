@@ -28,8 +28,7 @@ router.post("/:articleId", authMiddleware, async (req, res) => {
   }
 });
 
-// edit a comment
-
+// edit a comment=
 router.patch("/:commentId", authMiddleware, async (req, res) => {
   const commentIsAvailable = await Comments.findById(req.params.commentId);
   if (commentIsAvailable) {
@@ -43,6 +42,17 @@ router.patch("/:commentId", authMiddleware, async (req, res) => {
     res.json({
       message: "The comment you are trying to edit is not available",
     });
+  }
+});
+
+// delete a comment
+router.delete("/:commentId", authMiddleware, async (req, res) => {
+  const commentExists = await Comments.findById(req.params.commentId);
+  if (commentExists) {
+    await Comments.deleteOne({ _id: req.params.commentId });
+    res.status(200).json({ message: "Comment deleted" });
+  } else {
+    res.json({ message: "Problem finding this comment" });
   }
 });
 
