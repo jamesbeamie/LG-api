@@ -43,7 +43,7 @@ router.get("/", async (req, res) => {
 // specific article
 router.get("/:articleId", async (req, res) => {
   const exists = await Article.findById(req.params.articleId).populate(
-    "likes dislikes"
+    "likes dislikes comments"
   );
   if (exists) {
     try {
