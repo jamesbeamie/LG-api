@@ -17,7 +17,7 @@ router.post("/", imageMiddleware, authMiddleware, async (req, res) => {
     description,
     articleImage: req.file.path,
     body,
-    createdAt: new Date()
+    createdAt: new Date(),
   });
 
   try {
@@ -33,7 +33,7 @@ router.post("/", imageMiddleware, authMiddleware, async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const articles = await Article.find().populate("likes dislikes");
+    const articles = await Article.find().populate("likes dislikes comments");
     res.status(200).json({ articles });
   } catch (err) {
     res.json({ message: "problem finding articles", err });
@@ -53,7 +53,7 @@ router.get("/:articleId", async (req, res) => {
     } catch (err) {
       res.json({
         message: `error fetching article with ID${req.params.articleId}`,
-        err
+        err,
       });
     }
   } else {
@@ -73,7 +73,7 @@ router.patch(
         const { title, description, body } = req.body;
         const updatedArticle = await Article.updateOne(
           {
-            _id: req.params.articleId
+            _id: req.params.articleId,
           },
           {
             $set: {
@@ -81,21 +81,22 @@ router.patch(
               description,
               body,
               updatedAt: new Date(),
-              articleImage: req.file.path
-            }
+              articleImage: req.file.path,
+            },
           }
         );
-        res
-          .status(201)
-          .json({ article: updatedArticle, message: "Update successful" });
+        res.status(201).json({
+          article: updatedArticle,
+          message: "Update successful",
+        });
       } catch (err) {
         res.json({
-          message: `Error updating article: ${req.params.articleId}`
+          message: `Error updating article: ${req.params.articleId}`,
         });
       }
     } else {
       res.json({
-        message: `Article with Id: ${req.params.articleId} not found`
+        message: `Article with Id: ${req.params.articleId} not found`,
       });
     }
   }
@@ -107,7 +108,7 @@ router.delete("/:articleId", authMiddleware, async (req, res) => {
     if (exists) {
       // model.remove is deprecated use deleteOne instead
       const deletedArticle = await Article.deleteOne({
-        _id: req.params.articleId
+        _id: req.params.articleId,
       });
       res.json({ article: deletedArticle, message: "deleted" });
     } else {

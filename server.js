@@ -12,6 +12,7 @@ const socialAuthRoute = require("./Routes/authentication/socialAuth/GoogleAuth")
 const articlesRoutes = require("./Routes/Articles/Articles");
 const likesRoute = require("./Routes/Likes/Likes");
 const dislikesRoute = require("./Routes/Dislikes/Dislikes");
+const commentsRoutes = require("./Routes/comments/Comments");
 // must be imported for passport config to rub
 const passport = require("./middlewares/PassportConfig");
 
@@ -28,7 +29,7 @@ app.use("/socialauth", socialAuthRoute);
 app.use("/articles", articlesRoutes);
 app.use("/likes", likesRoute);
 app.use("/dislikes", dislikesRoute);
-
+app.use("/comments", commentsRoutes);
 // server
 mongoose
   .connect(
