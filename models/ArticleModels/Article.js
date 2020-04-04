@@ -27,7 +27,8 @@ const articleSchema = new Schema({
     type: Date
   },
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Likes" }],
-  dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "DisLikes" }]
+  dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "DisLikes" }],
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comments" }]
 });
 
 module.exports = mongoose.model("Article", articleSchema);
