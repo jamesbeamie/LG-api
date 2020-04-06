@@ -36,6 +36,16 @@ JWT_SECRETE_KEY=averysecretekeyforauthentication `
       "password":"Mustbe@val1dpswd"
     }
    - `Post` to `http://localhost:5000/authentication/login`
+- Pasword reset-link: {
+      "email":"user@email.com"
+    }
+    - sends a link for password reset to the user.
+   - `Post` to `http://localhost:5000/pwdreset/reset-link`
+- Pasword update: {
+      "password":"Mustbe@val1dNEWpswd"
+    }
+    - updates the user credentials with the new password based the verification token.
+   - `Patch` to `http://localhost:5000/pwdreset/reset/<verificationToken>`
 - Social authentication: Google, facebook, twitter
 ### Articles
 - Authenticated users can create, update and delete and publish content
