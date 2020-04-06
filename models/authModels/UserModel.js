@@ -5,17 +5,20 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
   username: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
-  likedArticles: [{ type: mongoose.Schema.Types.ObjectId, ref: "Likes" }]
+  verificationTkn: {
+    type: String,
+  },
+  likedArticles: [{ type: mongoose.Schema.Types.ObjectId, ref: "Likes" }],
 });
 
 module.exports = mongoose.model("User", userSchema);
