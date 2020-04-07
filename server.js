@@ -36,6 +36,7 @@ mongoose
   )
   .then(() => {
     app.listen(`${process.env.PORT}` || 5000);
+    console.log(`app listening to http://127.0.0.1:${process.env.PORT || 5000} )`);
   })
   .catch(err => {
     throw err;
