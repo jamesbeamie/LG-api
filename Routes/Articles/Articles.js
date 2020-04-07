@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
 const Article = require("../../models/ArticleModels/Article");
+const User = require("../../models/authModels/UserModel");
 
 //middlewares
 const authMiddleware = require("../../middlewares/AuthMiddleware");
@@ -22,7 +24,7 @@ router.post("/", imageMiddleware, authMiddleware, async (req, res) => {
 
   try {
     const publishedArticle = await newArticle.save();
-    publishedArticle.populate("likes", "dislikes");
+    // publishedArticle.populate("likes", "dislikes");
     res.status(201).json({ publishedArticle, message: "publish successful" });
   } catch (err) {
     res.json({ message: "Error publishing article" });
@@ -106,7 +108,6 @@ router.delete("/:articleId", authMiddleware, async (req, res) => {
   try {
     const exists = await Article.findById(req.params.articleId);
     if (exists) {
-      // model.remove is deprecated use deleteOne instead
       const deletedArticle = await Article.deleteOne({
         _id: req.params.articleId,
       });
@@ -116,6 +117,33 @@ router.delete("/:articleId", authMiddleware, async (req, res) => {
     }
   } catch (err) {
     res.json({ message: `Error deleting :${req.params.articleId}` });
+  }
+});
+
+router.post("/bookmark/:articleId", authMiddleware, async (req, res) => {
+  const foundArticle = Article.findById(req.params.articleId);
+  // console.log(
+  //   "&& req.headers && req.headers.authorization",
+  //   req.headers.authorization
+  // );
+  if (foundArticle && req.headers.authorization) {
+    try {
+      const token = req.headers.authorization.split(" ")[1];
+      const decodedUser = jwt.verify(token, process.env.JWT_SECRETE_KEY);
+      const { id, email } = decodedUser;
+      // const user = { id, email };
+      const bookmarkingUser = await User.findById(id);
+
+      console.log("sawa", "email", "atiko", foundArticle);
+      //decode token to get user email bookmarkedArticles
+      await bookmarkingUser.bookmarkdArticles.push(foundArticle);
+      res.send("Sawa");
+    } catch (err) {
+      console.log("mbaya");
+      res.json({ err, message: "error" });
+    }
+  } else {
+    res.json({ message: "Hakuna article" });
   }
 });
 

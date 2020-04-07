@@ -9,7 +9,7 @@ const multerStorage = multer.diskStorage({
   filename: (req, file, cb) => {
     // use original name of the file
     cb(null, file.originalname);
-  }
+  },
 });
 
 const imageFilter = (req, file, cb) => {
@@ -27,7 +27,7 @@ const imageFilter = (req, file, cb) => {
 const uploadImage = multer({
   storage: multerStorage,
   limits: { fileSize: 1024 * 1024 * 5 },
-  imageFilter
+  imageFilter,
 });
 
 module.exports = uploadImage;

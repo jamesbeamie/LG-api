@@ -14,6 +14,7 @@ const likesRoute = require("./Routes/Likes/Likes");
 const dislikesRoute = require("./Routes/Dislikes/Dislikes");
 const commentsRoutes = require("./Routes/comments/Comments");
 const resetPwdRoutes = require("./Routes/authentication/passwordReset/PasswordReset");
+const bookmarksRoutes = require("./Routes/bookmarks/bookmarks");
 // must be imported for passport config to rub
 const passport = require("./middlewares/PassportConfig");
 
@@ -32,6 +33,7 @@ app.use("/likes", likesRoute);
 app.use("/dislikes", dislikesRoute);
 app.use("/comments", commentsRoutes);
 app.use("/pwdreset", resetPwdRoutes);
+app.use("/bookmark", bookmarksRoutes);
 // server
 mongoose
   .connect(
