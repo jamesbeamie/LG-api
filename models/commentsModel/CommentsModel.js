@@ -5,18 +5,18 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema({
   comment: {
     type: String,
-    require: true
+    require: true,
   },
   commentedAt: {
-    type: Date
+    type: Date,
   },
   updatedAt: {
-    type: Date
+    type: Date,
   },
   article: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Article"
-  }
+    ref: "Article",
+  },
 });
 
 module.exports = mongoose.model("Comments", commentSchema);

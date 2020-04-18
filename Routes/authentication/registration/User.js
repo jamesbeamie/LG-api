@@ -5,12 +5,12 @@ const checkAuthentication = require("../../../middlewares/AuthMiddleware");
 
 const User = require("../../../models/authModels/UserModel");
 
-const validEmail = email => {
+const validEmail = (email) => {
   let regx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return regx.test(email);
 };
 
-const validPwd = pwd => {
+const validPwd = (pwd) => {
   var re = /^(?=.*[a-z]){3,}(?=.*[A-Z]){2,}(?=.*[0-9]){2,}(?=.*[!@#$%^&*()--__+.]){1,}.{8,}$/;
   return re.test(pwd);
 };
@@ -27,13 +27,13 @@ router.post("/signup", async (req, res) => {
         hashedPwd = await bcrypt.hash(password, 12, (err, hash) => {
           if (err) {
             return res.status(500).json({
-              message: `the error :${err}`
+              message: `the error :${err}`,
             });
           } else {
             const newUser = new User({
               username,
               email,
-              password: hash
+              password: hash,
             });
 
             newUser.save();
@@ -43,7 +43,7 @@ router.post("/signup", async (req, res) => {
         });
       } else {
         return res.status(500).json({
-          message: `Email must be of the formart example@email.com and password  atleast1numberspeci@lcharactorandCapital`
+          message: `Email must be of the formart example@email.com and password  atleast1numberspeci@lcharactorandCapital`,
         });
       }
     }
@@ -56,7 +56,7 @@ router.post("/signup", async (req, res) => {
 // get all users
 router.get("/", async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().populate("bookmarkedArticles");
     res.json(users);
   } catch (err) {
     res.json({ message: `sorry, could not find user` });
@@ -66,7 +66,9 @@ router.get("/", async (req, res) => {
 // get a specific user
 router.get("/:userId", checkAuthentication, async (req, res) => {
   try {
-    const exists = await User.findById(req.params.userId);
+    const exists = await User.findById(req.params.userId).populate(
+      "bookmarkdArticles"
+    );
     if (exists) {
       res.json(exists);
     } else {
@@ -86,7 +88,7 @@ router.patch("/:userId", checkAuthentication, async (req, res) => {
       hashedPwd = await bcrypt.hash(password, 12, (err, hash) => {
         if (err) {
           return res.status(500).json({
-            message: `the error :${err}`
+            message: `the error :${err}`,
           });
         } else {
           User.updateOne(
@@ -95,8 +97,8 @@ router.patch("/:userId", checkAuthentication, async (req, res) => {
               $set: {
                 username,
                 email,
-                password: hash
-              }
+                password: hash,
+              },
             }
           );
           res.status(200).json({ message: "Edited" });
