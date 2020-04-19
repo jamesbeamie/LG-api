@@ -24,7 +24,8 @@ const createArticle = async (req, res) => {
 const getArticles = async (req, res) => {
   try {
     const articles = await Article.find().populate("likes dislikes comments");
-    res.status(200).json({ articles });
+    res.status(200);
+    res.json({ articles });
   } catch (err) {
     res.json({ message: "problem finding articles", err });
   }
