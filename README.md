@@ -33,22 +33,22 @@ JWT_SECRETE_KEY=averysecretekeyforauthentication `
       "email":"user@email.com",
       "password":"Mustbe@val1dpswd"
     }
-    - `Post` to `http://localhost:5000/authentication/signup`
+    - `Post` to `http://localhost:5000/api/V1/authentication/signup`
 - Login: {
       "email":"user@email.com",
       "password":"Mustbe@val1dpswd"
     }
-   - `Post` to `http://localhost:5000/authentication/login`
+   - `Post` to `http://localhost:5000/api/V1/authentication/login`
 - Pasword reset-link: {
       "email":"user@email.com"
     }
     - sends a link for password reset to the user.
-   - `Post` to `http://localhost:5000/pwdreset/reset-link`
+   - `Post` to `http://localhost:5000/api/V1/pwdreset/reset-link`
 - Pasword update: {
       "password":"Mustbe@val1dNEWpswd"
     }
     - updates the user credentials with the new password based the verification token.
-   - `Patch` to `http://localhost:5000/pwdreset/reset/<verificationToken>`
+   - `Patch` to `http://localhost:5000/api/V1/pwdreset/reset/<verificationToken>`
 - Social authentication: Google, facebook, twitter
 ### Articles
 - Authenticated users can create, update and delete and publish content
@@ -56,27 +56,27 @@ JWT_SECRETE_KEY=averysecretekeyforauthentication `
 - Authenticated users can: like, favorite and bookmark.
 - Creating an article:
   - post form-data with: `title, description, body, articleImage` with a `bearer token` in the `headers` 
-   - `Post` to `http://localhost:5000/articles`
+   - `Post` to `http://localhost:5000/api/V1/articles`
 - Get all articles:
-   - `Get` to `http://localhost:5000/articles`
+   - `Get` to `http://localhost:5000/api/V1/articles`
 - Get Specific article
-   - `Get` to `http://localhost:5000/articles/<articleID>`
+   - `Get` to `http://localhost:5000/api/V1/articles/<articleID>`
 - Delete an article
-   - `Delete` to `http://localhost:5000/articles/<articleID>`
+   - `Delete` to `http://localhost:5000/api/V1/articles/<articleID>`
 - Updating an article:
   - Send form-data with: `title, description, body, articleImage` with a `bearer token` in the `headers` 
-   - `Patch` to `http://localhost:5000/articles/<articleID>`
+   - `Patch` to `http://localhost:5000/api/V1/articles/<articleID>`
 ### Comments on articles
 - Authenticated users can create, update and delete a comment on an article
 - All user (both authenticated and unauthenticated) can view comments on articles
 - Creating a comment:
   - send: `{"comment":"I am commenting here"}` with a`bearer token` in the `headers` and the `id of the article to comment on` 
-   - `Post` to `http://localhost:5000/comments/<articleId>`
+   - `Post` to `http://localhost:5000/api/V1/comments/<articleId>`
 - Delete an a comment
-   - `Delete` to `http://localhost:5000/comments/<commentId>`
+   - `Delete` to `http://localhost:5000/api/V1/comments/<commentId>`
 - Updating an article:
   - send: `{"comment":"I am updating a comment"}` with a`bearer token` in the `headers` and the `id of the article to comment on` 
-   - `Patch` to `http://localhost:5000/comments/<commentId>`
+   - `Patch` to `http://localhost:5000/api/V1/comments/<commentId>`
 ### Subscriptions
 - Authenticated users can subscribe to certain mentors so that they get email notifications 
 ### Share
