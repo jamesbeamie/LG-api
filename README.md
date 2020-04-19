@@ -5,6 +5,9 @@
 # LG-API (Learners Garage):
 - It's an API for a blog application that allows mentors to post content
 for learners and researchers to access, comment, share, subscribe to pro, pay for pro access, bookmark and like
+# Versioning
+- This is the first itteration
+- versioned as `/api/V1`
 # Stacks
 - The API is developed using NodeJs, Express server and Connecting to a mongo Database.
 ## Project setup
