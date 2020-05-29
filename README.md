@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.com/jamesbeamie/LG-api.svg?branch=develop)](https://travis-ci.com/jamesbeamie/LG-api)
+[![Build Status](https://travis-ci.com/jamesbeamie/LG-api.svg?token=pAZqtMyiBeWVWhASMcJN&branch=develop)](https://travis-ci.com/jamesbeamie/LG-api)
 [![Maintainability](https://api.codeclimate.com/v1/badges/bafc52f1778a7280814b/maintainability)](https://codeclimate.com/github/jamesbeamie/LG-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/bafc52f1778a7280814b/test_coverage)](https://codeclimate.com/github/jamesbeamie/LG-api/test_coverage)
 # LG-API (Learners Garage):
