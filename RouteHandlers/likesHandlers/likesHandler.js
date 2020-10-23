@@ -14,7 +14,7 @@ const likeArticle = async (req, res) => {
     // update the likedArticles array in the user model
     articleToLike.likes.push(liked);
     await articleToLike.save();
-    res.status(201).json({ liked, message: "liked article" });
+    res.status(201).json({ liked, message: "liked garage" });
   } catch (err) {
     res.json({ message: "could not submit like" });
   }

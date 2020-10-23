@@ -3,24 +3,24 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const articleSchema = new Schema({
-  title: {
+  name: {
     type: String,
     require: true
   },
-  description: {
+  location: {
     type: String,
     require: true
   },
-  body: {
+  specialty: {
     type: String,
     require: true
   },
-  articleImage: {
+  workHours: {
     type: String,
     require: true
   },
-  createdAt: {
-    type: Date,
+  mobile: {
+    type: String,
     require: true
   },
   updatedAt: {

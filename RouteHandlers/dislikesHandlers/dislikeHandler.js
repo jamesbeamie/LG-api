@@ -13,7 +13,7 @@ const articleDislike = async (req, res) => {
     // update the likedArticles array in the user model
     articleToDissike.dislikes.push(disliked);
     await articleToDissike.save();
-    res.status(201).json({ disliked, message: "disliked article" });
+    res.status(201).json({ disliked, message: "disliked garage" });
   } catch (err) {
     res.json({ message: "could not submit dislike" });
   }
