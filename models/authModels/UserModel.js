@@ -15,6 +15,20 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  mobile:{
+    type: String,
+    required: true,},
+  userType:{
+    type: String,
+    required: true,},
+  location: {
+    type: String,
+    required: true,
+  },
+  workHours: {
+    type: String,
+    required: true,
+  },
   verificationTkn: {
     type: String,
   },

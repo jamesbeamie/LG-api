@@ -13,7 +13,7 @@ const validPwd = (pwd) => {
 
 // POST register route
 const register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password,mobile,userType,location,workHours } = req.body;
   try {
     const exists = await User.find({ email });
     if (exists.length >= 1) {
@@ -30,6 +30,10 @@ const register = async (req, res) => {
               username,
               email,
               password: hash,
+              mobile,
+              userType,
+              location,
+              workHours 
             });
 
             newUser.save();
