@@ -13,7 +13,7 @@ const validPwd = (pwd) => {
 
 // POST register route
 const register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password,mobile,userType,location,workHours } = req.body;
   try {
     const exists = await User.find({ email });
     if (exists.length >= 1) {
@@ -30,6 +30,10 @@ const register = async (req, res) => {
               username,
               email,
               password: hash,
+              mobile,
+              userType,
+              location,
+              workHours 
             });
 
             newUser.save();
@@ -60,9 +64,10 @@ const allUsers = async (req, res) => {
 };
 
 // get a specific user
-const specificUser = async (req, res) => {
+const userByLocation = async (req, res) => {
   try {
-    const exists = await User.findById(req.params.userId);
+    const exists = await User.find(
+      {location:req.params.location,userType:req.params.userType});
     if (exists) {
       res.json(exists);
     } else {
@@ -122,4 +127,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { register, allUsers, specificUser, editUser, deleteUser };
+module.exports = { register, allUsers, userByLocation, editUser, deleteUser };

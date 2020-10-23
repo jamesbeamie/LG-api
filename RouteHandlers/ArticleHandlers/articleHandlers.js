@@ -2,21 +2,18 @@ const Article = require("../../models/ArticleModels/Article");
 
 // posting an article
 const createArticle = async (req, res) => {
-  const { title, description, body } = req.body;
+  const { name, location, specialty, workHours,mobile } = req.body;
   const newArticle = new Article({
-    title,
-    description,
-    articleImage: req.file.path,
-    body,
+    name, location, specialty, workHours,mobile ,
     createdAt: new Date(),
   });
 
   try {
     const publishedArticle = await newArticle.save();
     publishedArticle.populate("likes", "dislikes");
-    res.status(201).json({ publishedArticle, message: "publish successful" });
+    res.status(201).json({ publishedArticle, message: "garage registered" });
   } catch (err) {
-    res.json({ message: "Error publishing article" });
+    res.json({ message: "Error publishing garage" });
   }
 };
 
@@ -27,7 +24,7 @@ const getArticles = async (req, res) => {
     res.status(200);
     res.json({ articles });
   } catch (err) {
-    res.json({ message: "problem finding articles", err });
+    res.json({ message: "problem finding garage", err });
   }
 };
 
@@ -41,7 +38,7 @@ const getSpecificArticle = async (req, res) => {
     try {
       res
         .status(200)
-        .json({ article: exists, message: "article retrieved successfully" });
+        .json({ article: exists, message: "garage retrieved successfully" });
     } catch (err) {
       res.json({
         message: `error fetching article with ID${req.params.articleId}`,
@@ -52,6 +49,25 @@ const getSpecificArticle = async (req, res) => {
     res.json({ message: `Article ${req.params.articleId} not found` });
   }
 };
+const getByLocation = async (req, res) => {
+  const exists = await Article.find({location:req.params.location}).populate(
+    "likes dislikes comments"
+  );
+  if (exists) {
+    try {
+      res
+        .status(200)
+        .json({ article: exists, message: "garage retrieved successfully" });
+    } catch (err) {
+      res.json({
+        message: `error fetching article with ID${req.params.articleId}`,
+        err,
+      });
+    }
+  } else {
+    res.json({ message: `garage ${req.params.articleId} not found` });
+  }
+};
 
 // edit an article
 
@@ -59,18 +75,15 @@ const editArticle = async (req, res) => {
   const found = await Article.findById(req.params.articleId);
   if (found) {
     try {
-      const { title, description, body } = req.body;
+      const { name, location, specialty, workHours,mobile } = req.body;
       const updatedArticle = await Article.updateOne(
         {
           _id: req.params.articleId,
         },
         {
           $set: {
-            title,
-            description,
-            body,
+            name, location, specialty, workHours,mobile,
             updatedAt: new Date(),
-            articleImage: req.file.path,
           },
         }
       );
@@ -114,4 +127,5 @@ module.exports = {
   getSpecificArticle,
   editArticle,
   deleteArticle,
+  getByLocation
 };

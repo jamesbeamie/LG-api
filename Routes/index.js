@@ -13,7 +13,7 @@ const imageMiddleware = uploadImage.single("articleImage");
 const {
   register,
   allUsers,
-  specificUser,
+  userByLocation,
   editUser,
   deleteUser,
 } = require("../RouteHandlers/authHandlers/SingUpHandler");
@@ -31,7 +31,7 @@ const {
 const {
   createArticle,
   getArticles,
-  getSpecificArticle,
+  getByLocation,
   editArticle,
   deleteArticle,
 } = require("../RouteHandlers/ArticleHandlers/articleHandlers");
@@ -56,7 +56,7 @@ router.post("/authentication/signup", register);
 // get all users
 router.get("/authentication/", allUsers);
 // get a specific user
-router.get("/authentication/:userId", authMiddleware, specificUser);
+router.get("/authentication/:location/:userType", authMiddleware, userByLocation);
 // Edit User
 router.patch("/authentication/:userId", editUser);
 // delete user
@@ -95,7 +95,7 @@ router.post("/articles/", imageMiddleware, authMiddleware, createArticle);
 // get all articles
 router.get("/articles/", getArticles);
 // specific article
-router.get("/articles/:articleId", getSpecificArticle);
+router.get("/articles/:location", getByLocation);
 //edit article
 router.patch(
   "/articles/:articleId",
