@@ -186,7 +186,6 @@ describe("Articles", function () {
     it("returns the fetched article", function (done) {
       request(url, function (error, response, body) {
         // expect(body).to.equal(sampleArticle);
-
         expect(body).to.own.include("articles");
         done();
       });
