@@ -150,18 +150,18 @@ const sampleArticle = {
   ],
 };
 
-describe("Articles", function () {
-  describe("Get all articles", function () {
+describe("Test Articles CRUD", function () {
+  describe("Test Retrieve articles", function () {
     var url = "http://localhost:5000/api/V1/articles";
 
-    it("returns status 200 on fetching all articles", function (done) {
+    it("Returns status 200 on fetching all articles", function (done) {
       request(url, function (error, response, body) {
         expect(response.statusCode).to.equal(200);
         done();
       });
     });
 
-    it("returns the actual article", function (done) {
+    it("returns an array of all the articles", function (done) {
       request(url, function (error, response, body) {
         // console.log("8*****", body);
         // expect(body).to.equal(sampleArticle);
@@ -173,20 +173,38 @@ describe("Articles", function () {
     });
   });
 
-  describe("Fetches all articles", function () {
-    var url = "http://localhost:5000/api/V1/articles";
+  describe("Fetches a single article by id", function () {
+    var url = "http://localhost:5000/api/V1/articles/5f92a032a5757e1a5ad1b8c0";
+    var wrongIdUrl =
+      "http://localhost:5000/api/V1/articles/5f92a032a5757e1a5ad1b8c55";
 
-    it("returns status 200", function (done) {
+    it("returns status 200 for successfull retrieval", function (done) {
       request(url, function (error, response, body) {
         expect(response.statusCode).to.equal(200);
         done();
       });
     });
+    // it("returns status 404 for wrong ID", function (done) {
+    //   request(wrongIdUrl, function (error, response, body) {
+    //     console.log("hapa********", response);
+    //     expect(response.statusCode).to.equal(404);
+    //     done();
+    //   });
+    // });
+
+    it("returns status 404 for wrong ID", (done) => {
+      request(wrongIdUrl)
+        .then((res, response, body) => {
+          console.log("hapa********", response);
+          expect(response.statusCode).to.equal(404);
+          done();
+        })
+        .catch(done);
+    });
 
     it("returns the fetched article", function (done) {
       request(url, function (error, response, body) {
-        // expect(body).to.equal(sampleArticle);
-        expect(body).to.own.include("articles");
+        expect(body).to.own.include("article");
         done();
       });
     });
