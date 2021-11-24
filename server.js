@@ -21,13 +21,10 @@ app.use("/api/V1", apiRoutes);
 
 // server
 mongoose
-  .connect(
-    // atlas
-    // `${process.env.ATLAS_DB}`,
-    //local DB
-    `${process.env.LOCAL_DB}`,
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(`${process.env.LOCAL_DB}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     app.listen(`${process.env.PORT}` || 5000);
     console.log(
