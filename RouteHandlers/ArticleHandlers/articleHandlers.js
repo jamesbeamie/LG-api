@@ -49,7 +49,11 @@ const getSpecificArticle = async (req, res) => {
       });
     }
   } else {
-    res.json({ message: `Article ${req.params.articleId} not found` });
+    // res.json({ message: `Article ${req.params.articleId} not found` });
+    res.json({ message: `Article  not found` });
+    // res
+    //   .status(404)
+    //   .json({ message: `Article ${req.params.articleId} not found` });
   }
 };
 
